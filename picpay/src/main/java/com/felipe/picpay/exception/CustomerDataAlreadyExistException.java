@@ -20,6 +20,6 @@ public class CustomerDataAlreadyExistException extends BussinesException{
 
         problemDe.setDetail(detail);
 
-        return super.toProblemDetail();
+        return problemDe;
     }
 }

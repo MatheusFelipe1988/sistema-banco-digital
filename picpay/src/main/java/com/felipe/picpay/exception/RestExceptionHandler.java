@@ -29,7 +29,5 @@ public class RestExceptionHandler {
         return pb;
     }
 
-    private record InvalidParam(String name, String reason){
-
-    }
+    private record InvalidParam(String name, String reason){}
 }

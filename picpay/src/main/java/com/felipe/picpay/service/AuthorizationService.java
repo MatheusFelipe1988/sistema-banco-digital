@@ -22,6 +22,6 @@ public class AuthorizationService {
             throw new BussinesException();
         }
 
-        return response.getBody().authorize();
+        return response.getBody().authorized();
     }
 }
