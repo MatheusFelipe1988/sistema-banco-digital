@@ -45,6 +45,9 @@ public class Wallet {
         this.walletType = walletType;
     }
 
+    public Wallet(long id, String name, String email, String password, String cpfCnpj,BigDecimal saldo, WalletType walletType) {
+    }
+
     public boolean isTransferAllowedForWalletType() {
         return this.walletType.equals(WalletType.Enum.USER.get());
     }
