@@ -2,6 +2,7 @@ package com.felipe.picpay.service;
 
 import com.felipe.picpay.client.NotificationClient;
 import com.felipe.picpay.model.Transfeer;
+import com.felipe.picpay.model.Wallet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,6 @@ public class NotificationService {
         }
     }
 
+    public void postNotification(TransferService service, String message) {
+    }
 }

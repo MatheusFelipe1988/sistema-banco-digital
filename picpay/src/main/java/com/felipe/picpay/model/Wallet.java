@@ -1,5 +1,6 @@
 package com.felipe.picpay.model;
 
+import com.felipe.picpay.model.dto.WalletDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,6 +47,14 @@ public class Wallet {
     }
 
     public Wallet(long id, String name, String email, String password, String cpfCnpj,BigDecimal saldo, WalletType walletType) {
+    }
+
+    public Wallet(WalletDTO data) {
+        this.name = data.name();
+        this.email = data.email();
+        this.password = data.password();
+        this.cpfCnpj = data.cpfCnpj();
+        this.walletType = data.walletType().get();
     }
 
     public boolean isTransferAllowedForWalletType() {

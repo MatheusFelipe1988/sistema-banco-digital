@@ -14,6 +14,7 @@ import java.util.Objects;
 @Table(name = "walletType")
 @NoArgsConstructor
 public class WalletType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

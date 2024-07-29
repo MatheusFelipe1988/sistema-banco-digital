@@ -1,5 +1,6 @@
 package com.felipe.picpay.service;
 
+import com.felipe.picpay.exception.BussinesException;
 import com.felipe.picpay.exception.CustomerDataAlreadyExistException;
 import com.felipe.picpay.model.Wallet;
 import com.felipe.picpay.model.dto.WalletDTO;
@@ -25,5 +26,13 @@ public class WalletService {
         }
 
         return repository.save(walletDTO.toWallet());
+    }
+
+    public Wallet findWalletById(Long id) throws Exception {
+        return this.repository.findWalletById(id).orElseThrow(() -> new Exception("User not found"));
+    }
+
+    public void saveWallet(Wallet wallet){
+        this.repository.save(wallet);
     }
 }
