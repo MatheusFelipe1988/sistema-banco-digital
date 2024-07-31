@@ -37,7 +37,12 @@ public class WalletController {
         return ResponseEntity.ok(wallet);
     }
 
-    @PostMapping("/email")
+    @Operation(summary = "Login", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login com sucesso"),
+            @ApiResponse(responseCode = "400", description = "erro na descrição")
+    })
+    @PostMapping("/login")
     public ResponseEntity<Email> saveEmail(@RequestBody @Valid UserDTO userDTO){
         var uEmail = new Email();
         BeanUtils.copyProperties(userDTO, uEmail);

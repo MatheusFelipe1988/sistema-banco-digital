@@ -23,7 +23,7 @@ public class WalletProducer {
         emailDto.setId(email.getId());
         emailDto.setEmailTo(email.getEmail());
         emailDto.setSubject("Success");
-        emailDto.setText(email.getName() + ", O picpay agradece o seu cadastro em nosso sistema, aproveite as transferencias em nossa plataforma");
+        emailDto.setText(email.getName() + ", O picpay agradece a sua volta em nosso sistema, aproveite as transferencias em nossa plataforma");
 
         rabbitTemplate.convertAndSend("", routingKey, emailDto);
     }
