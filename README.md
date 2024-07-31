@@ -6,9 +6,7 @@ Decidi topar em fazer um projeto de aplicação com varios requisitos propostos 
 
 - Java
 - Springboot
-- Postman
-- MySQL
 - Docker
 - RabbitMQ
+- MySQL
 - H2
-- Mock
