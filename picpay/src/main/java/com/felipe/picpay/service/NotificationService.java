@@ -31,7 +31,4 @@ public class NotificationService {
             logger.error("Error while sending notification", e);
         }
     }
-
-    public void postNotification(TransferService service, String message) {
-    }
 }

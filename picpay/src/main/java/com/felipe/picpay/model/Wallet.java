@@ -1,11 +1,13 @@
 package com.felipe.picpay.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.felipe.picpay.model.dto.WalletDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
@@ -13,7 +15,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Wallet {
+public class Wallet implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +40,7 @@ public class Wallet {
 
     @ManyToOne
     @JoinColumn(name = "walletType_id")
+    @JsonIgnore
     private WalletType walletType;
 
     public Wallet(String name, String email, String password, String cpfCnpj, WalletType walletType) {

@@ -1,12 +1,16 @@
 package com.felipe.picpay.controller;
 
+import com.felipe.picpay.model.Email;
 import com.felipe.picpay.model.Wallet;
+import com.felipe.picpay.model.dto.UserDTO;
 import com.felipe.picpay.model.dto.WalletDTO;
 import com.felipe.picpay.service.WalletService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,5 +35,12 @@ public class WalletController {
         var wallet = service.createWallet(walletDTO);
 
         return ResponseEntity.ok(wallet);
+    }
+
+    @PostMapping("/email")
+    public ResponseEntity<Email> saveEmail(@RequestBody @Valid UserDTO userDTO){
+        var uEmail = new Email();
+        BeanUtils.copyProperties(userDTO, uEmail);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.saveEmail(uEmail));
     }
 }
