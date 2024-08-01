@@ -4,7 +4,7 @@ import com.felipe.picpay.exception.BalanceException;
 import com.felipe.picpay.exception.NotFoundException;
 import com.felipe.picpay.exception.TransferNotAllowedToWalletTypeException;
 import com.felipe.picpay.exception.TransferNotAuthorizeException;
-import com.felipe.picpay.model.Transfeer;
+import com.felipe.picpay.model.Transfer;
 import com.felipe.picpay.model.Wallet;
 import com.felipe.picpay.model.dto.TransferDTO;
 import com.felipe.picpay.repository.TransferRepository;
@@ -31,7 +31,8 @@ public class TransferService {
     }
 
     @Transactional
-    public Transfeer transfeer(TransferDTO transferDTO){
+    public Transfer transfer(TransferDTO transferDTO){
+
         var sender = walletRepository.findById(transferDTO.payer())
                 .orElseThrow(() -> new NotFoundException(transferDTO.payer()));
 
@@ -43,7 +44,7 @@ public class TransferService {
         sender.debit(transferDTO.value());
         receiver.credit(transferDTO.value());
 
-        var transfer = new Transfeer(sender, receiver, transferDTO.value());
+        var transfer = new Transfer(sender, receiver, transferDTO.value());
 
         walletRepository.save(sender);
         walletRepository.save(receiver);
@@ -57,6 +58,7 @@ public class TransferService {
     }
 
     private void validateTransfer(TransferDTO transferDTO, Wallet sender) {
+
         if(!sender.isTransferAllowedForWalletType()){
             throw new TransferNotAllowedToWalletTypeException();
         }

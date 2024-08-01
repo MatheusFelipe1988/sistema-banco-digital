@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +44,7 @@ public class WalletController {
             @ApiResponse(responseCode = "400", description = "erro na descrição")
     })
     @PostMapping("/login")
+    @Cacheable("wallets")
     public ResponseEntity<Email> saveEmail(@RequestBody @Valid UserDTO userDTO){
         var uEmail = new Email();
         BeanUtils.copyProperties(userDTO, uEmail);

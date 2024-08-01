@@ -16,7 +16,7 @@ public class NotFoundException extends BussinesException{
         var problemD = ProblemDetail.forStatus(HttpStatus.UNPROCESSABLE_ENTITY);
 
         problemD.setTitle("Wallet not found");
-        problemD.setDetail("There is not wallet with id");
+        problemD.setDetail("There is not wallet with id" + walletId + ".");
 
         return problemD;
     }

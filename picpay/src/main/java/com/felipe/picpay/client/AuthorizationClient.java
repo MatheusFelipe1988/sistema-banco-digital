@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(
         name = "AuthorizationClient",
-    url = "${client.authorization.mock}"
+        url = "${client.authorization.mock}"
     )
 public interface AuthorizationClient {
 

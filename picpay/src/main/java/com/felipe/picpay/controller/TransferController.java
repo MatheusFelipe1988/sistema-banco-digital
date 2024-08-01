@@ -1,12 +1,13 @@
 package com.felipe.picpay.controller;
 
-import com.felipe.picpay.model.Transfeer;
+import com.felipe.picpay.model.Transfer;
 import com.felipe.picpay.model.dto.TransferDTO;
 import com.felipe.picpay.service.TransferService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +28,10 @@ public class TransferController {
             @ApiResponse(responseCode = "400", description = "Ocorrerá erro de saldo insuficient "),
             @ApiResponse(responseCode = "400", description = "Usuário não existir")
     })
+    @Cacheable("transfer")
     @PostMapping("/transfer")
-    public ResponseEntity<Transfeer> transfer(@RequestBody @Valid TransferDTO dto){
-        var response = service.transfeer(dto);
+    public ResponseEntity<Transfer> transfer(@RequestBody @Valid TransferDTO dto){
+        var response = service.transfer(dto);
 
         return ResponseEntity.ok(response);
     }

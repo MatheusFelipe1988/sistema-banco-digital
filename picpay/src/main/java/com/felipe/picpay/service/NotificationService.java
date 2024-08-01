@@ -1,8 +1,7 @@
 package com.felipe.picpay.service;
 
 import com.felipe.picpay.client.NotificationClient;
-import com.felipe.picpay.model.Transfeer;
-import com.felipe.picpay.model.Wallet;
+import com.felipe.picpay.model.Transfer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,11 +17,11 @@ public class NotificationService {
         this.notificationClient = notificationClient;
     }
 
-    public void sendNotificaion(Transfeer transfeer){
+    public void sendNotificaion(Transfer transfer){
         try {
             logger.info("Sending notification ...");
 
-            var response = notificationClient.sendNotification(transfeer);
+            var response = notificationClient.sendNotification(transfer);
 
             if (response.getStatusCode().isError()){
                 logger.error("Error while sending notification, status code is not OK");
