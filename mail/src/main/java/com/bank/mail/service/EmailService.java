@@ -4,6 +4,7 @@ import com.bank.mail.domain.EmailModel;
 import com.bank.mail.domain.StatusEmail;
 import com.bank.mail.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -28,6 +29,7 @@ public class EmailService {
     private String emailFrom;
 
     @Transactional
+    @Cacheable("email")
     public EmailModel sendEmail(EmailModel emailModel){
         try {
             emailModel.setSendDataEmail(LocalDateTime.now());
