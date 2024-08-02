@@ -22,7 +22,6 @@ public class TransferService {
     private final NotificationService service;
     private final AuthorizationService authorizationService;
 
-
     public TransferService(TransferRepository repository, WalletRepository walletRepository, NotificationService service, AuthorizationService authorizationService) {
         this.repository = repository;
         this.walletRepository = walletRepository;
@@ -30,6 +29,9 @@ public class TransferService {
         this.authorizationService = authorizationService;
     }
 
+    /*
+        Realizar transfer}ências entre usuário e merchant
+    */
     @Transactional
     public Transfer transfer(TransferDTO transferDTO){
 
@@ -45,26 +47,28 @@ public class TransferService {
         receiver.credit(transferDTO.value());
 
         var transfer = new Transfer(sender, receiver, transferDTO.value());
-
         walletRepository.save(sender);
         walletRepository.save(receiver);
-
         var transferResult = repository.save(transfer);
-
         CompletableFuture.runAsync(() -> service.sendNotificaion(transferResult));
 
         return transferResult;
 
     }
 
-    private void validateTransfer(TransferDTO transferDTO, Wallet sender) {
 
+    /*
+        Instância que validará as transferências
+    */
+    private void validateTransfer(TransferDTO transferDTO, Wallet sender) {
         if(!sender.isTransferAllowedForWalletType()){
             throw new TransferNotAllowedToWalletTypeException();
         }
+
         if (!sender.isBalancerEqualOrGreatherThan(transferDTO.value())){
             throw new BalanceException();
         }
+
         if (!authorizationService.isAuthorized(transferDTO)){
             throw new TransferNotAuthorizeException();
         }

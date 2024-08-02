@@ -17,7 +17,6 @@ public class AuthorizationService {
     public boolean isAuthorized(TransferDTO transfer){
 
         var response = authorizationClient.isAuthorized();
-
         if(response.getStatusCode().isError()){
             throw new BussinesException();
         }

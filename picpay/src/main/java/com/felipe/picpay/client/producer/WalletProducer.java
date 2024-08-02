@@ -18,13 +18,16 @@ public class WalletProducer {
     @Value(value = "${spring.rabbitmq.queue}")
     private String routingKey;
 
+
+    /*
+        Produz mensagens ao rabbitmq e envia para o consumer mail
+    */
     public void publishMessageEmail(Email email){
         var emailDto = new EmailDTO();
         emailDto.setId(email.getId());
         emailDto.setEmailTo(email.getEmail());
         emailDto.setSubject("Success");
         emailDto.setText(email.getName() + ", O picpay agradece a sua volta em nosso sistema, aproveite as transferencias em nossa plataforma");
-
         rabbitTemplate.convertAndSend("", routingKey, emailDto);
     }
 }
