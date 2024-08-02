@@ -28,9 +28,14 @@ public class EmailService {
     @Value("${MAIL_USER}")
     private String emailFrom;
 
+
+    /*
+        Envia o e-mail quando  o login é realizado
+    */
     @Transactional
     @Cacheable("email")
     public EmailModel sendEmail(EmailModel emailModel){
+
         try {
             emailModel.setSendDataEmail(LocalDateTime.now());
             emailModel.setEmailFrom(emailFrom);

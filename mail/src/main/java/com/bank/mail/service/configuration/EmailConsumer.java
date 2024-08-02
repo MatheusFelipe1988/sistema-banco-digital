@@ -17,6 +17,7 @@ public class EmailConsumer {
         this.service = service;
     }
 
+    //Consome a mensagem enviada pelo login realizado
     @RabbitListener(queues = "${spring.rabbitmq.queue}")
     public void listen(@Payload EmailDTO emailDTO){
         var emailModel = new EmailModel();

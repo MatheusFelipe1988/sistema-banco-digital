@@ -18,6 +18,7 @@ public class RabbitMQConfig {
         return new Queue(queue, true);
     }
 
+    //Defini ao rabbitmq que consumirá mensagens enviadas pelo picpay
     @Bean
     public Jackson2JsonMessageConverter messageConverter(){
         ObjectMapper objectMapper = new ObjectMapper();
