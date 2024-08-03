@@ -2,7 +2,6 @@ package com.felipe.picpay.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -12,7 +11,6 @@ import java.util.UUID;
 @Table(name = "transfer")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Transfer {
 
     @Id
@@ -29,6 +27,9 @@ public class Transfer {
 
     @Column(name = "value")
     private BigDecimal value;
+
+    public Transfer() {
+    }
 
     public Transfer(Wallet sender, Wallet receiver, BigDecimal value) {
         this.sender = sender;
