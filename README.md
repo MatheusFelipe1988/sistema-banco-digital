@@ -1,5 +1,5 @@
 # sistema-banco-digital
-Sistema de transfências entre usuário e mercador com uma gama de features e microserviço
+Sistema de transfências entre usuário e mercador com uma gama de features, microserviço e clean code
 &nbsp;
 
 ### Lógica
@@ -10,7 +10,7 @@ Utilizei o framework RabbitMQ
 
 #### Notas
 Utilizem este link para gerar urls para quem deseja clonar: https://designer.mocky.io/
-Utilizei o cloudAMQP para o rabbitMQ, mas para quem possui o Erlang e o Rabbit, no meu outro projeto microservice de email possui a conexão correta.
+Utilizei o cloudAMQP para o rabbitMQ, mas para quem possui o Erlang e o Rabbit, no meu outro projeto microservice de email possui a conexão correta, deixarei em comentário a forma de conectar com Erlang e Rabbit instalados.
 
 ## Stacks:
 - Java
